@@ -1,4 +1,13 @@
 package com.example.downloadfiles.api
 
-class MoviesApi {
+import com.example.downloadfiles.model.MovieResponse
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.POST
+import rx.Observable
+
+
+interface MoviesApi {
+    @FormUrlEncoded
+    @POST("movies")
+    fun getMovies(): Observable<MovieResponse>
 }
