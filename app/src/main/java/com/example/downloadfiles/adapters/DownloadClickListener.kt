@@ -1,4 +1,5 @@
 package com.example.downloadfiles.adapters
 
-class DonwloadClickListener {
+interface DownloadClickListener {
+    fun onDownloadClicked(url: String,name:String)
 }

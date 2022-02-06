@@ -1,4 +1,11 @@
-package com.example.downloadfiles.network
+package com.example.downloadfiles.di
 
-class AppModule {
-}
+import com.example.downloadfiles.viewmodels.ViewModelModule
+import dagger.Module
+
+@Module(
+    includes = [ViewModelModule::class,
+        NetworkModule::class,
+        RepoModule::class]
+)
+class AppModule

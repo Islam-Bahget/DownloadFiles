@@ -1,15 +1,24 @@
-package com.example.downloadfiles.network
+package com.example.downloadfiles.di
 
-import android.content.Context
-import com.example.downloadfiles.ui.HomeRepo
-import com.example.downloadfiles.ui.HomeViewModel
+import android.app.Application
+import com.example.downloadfiles.App
+import dagger.BindsInstance
 import dagger.Component
-import retrofit2.Retrofit
+import dagger.android.AndroidInjectionModule
+import dagger.android.AndroidInjector
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [RetrofitClient::class])
-interface AppComponent {
-    fun retrofit(): Retrofit
 
+@Component(modules = [AppModule::class, AndroidInjectionModule::class, MainActivityModule::class])
+interface AppComponent : AndroidInjector<App> {
+
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        fun application(application: Application): Builder
+        fun build(): AppComponent
+    }
+
+    override fun inject(app: App)
 }

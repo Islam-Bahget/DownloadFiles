@@ -7,7 +7,8 @@ import rx.Observable
 
 
 interface MoviesApi {
-    @FormUrlEncoded
+
+
     @POST("movies")
     fun getMovies(): Observable<MovieResponse>
 }

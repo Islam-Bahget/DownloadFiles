@@ -1,5 +1,7 @@
 package com.example.downloadfiles.viewmodels
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.downloadfiles.repository.HomeRepo
@@ -16,9 +18,5 @@ class HomeViewModel @Inject constructor(var repo: HomeRepo) : ViewModel() {
         moviesResponse = repo.getMovies()
     }
 
-    //    @RequiresApi(Build.VERSION_CODES.O)
-    fun getMoviesFromFile() {
-        moviesResponse = repo.getMoviesFromFile()
-    }
 
 }

@@ -1,4 +1,4 @@
-package com.example.downloadfiles.network
+package com.example.downloadfiles.di
 
 import android.content.Context
 import com.example.downloadfiles.api.MoviesApi
@@ -13,10 +13,11 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
-class RetrofitClient(private val context: Context) {
+object NetworkModule {
 
     private val BASE_URL = "https://nagwa.free.beeceptor.com/"
     private val logger: HttpLoggingInterceptor = HttpLoggingInterceptor()
+
 
     @Provides
     @Singleton
@@ -52,9 +53,5 @@ class RetrofitClient(private val context: Context) {
         return RxJavaCallAdapterFactory.create()
     }
 
-    @Provides
-    @Singleton
-    fun getContext(): Context {
-        return context
-    }
+
 }

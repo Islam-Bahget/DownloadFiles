@@ -3,34 +3,17 @@ package com.example.downloadfiles
 import android.content.Context
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
-import com.example.downloadfiles.network.*
+import com.example.downloadfiles.di.*
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
 
-class App : MultiDexApplication() {
+class App : DaggerApplication() {
 
-    lateinit var apiComponent: ApiComponent
-    override fun onCreate() {
-        super.onCreate()
-        MultiDex.install(this)
-        declareComponent()
-    }
+    private val applicationInjector = DaggerAppComponent.builder().application(this).build()
 
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
-        MultiDex.install(this)
-    }
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> = applicationInjector
 
-    fun declareComponent() {
 
-        apiComponent =
-            DaggerApiComponent.builder().networkComponent(getNetworkComponent()).build()
-    }
-
-    private fun getNetworkComponent(): NetworkComponent {
-
-        return DaggerNetworkComponent.builder()
-            .retrofitClient(RetrofitClient(applicationContext))
-            .build()
-    }
 
 
 }
